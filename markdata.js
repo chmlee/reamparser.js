@@ -7,8 +7,10 @@ class File {
   constructor(path) {
     this.path = path;
     this.text = fs.readFileSync(filePath, 'utf8');
-    this.array = this.text.split(/\r?\n/);
+    this.array_raw = this.text.split(/\r?\n/);
+    this.array = this.array_raw.slice(0, this.array_raw.length - 1);
     this.max = this.array.length;
+    this.level = 0;
   }
 }
 
@@ -20,6 +22,9 @@ class Line extends File {
 
   next() {
     this.i += 1;
+    while (this.raw === '') {
+      this.i += 1;
+    }
   }
 
   raw(j = this.i) {
@@ -27,17 +32,20 @@ class Line extends File {
   }
 
   token(j = this.i) {
-    let token;
-    try {
-      [token] = this.raw(j).match(/[^\s]+/);
-    } catch (err) {
-      this.i = -1;
-    }
+    const [token] = this.raw(j).match(/[^\s]+/);
     return token;
   }
 
   content(j = this.i) {
     return this.raw(j).slice(this.token().length + 1).trim();
+  }
+
+  levelAdd() {
+    this.level += 1;
+  }
+
+  levelMinus() {
+    this.level -= 1;
   }
 }
 
@@ -61,31 +69,29 @@ line.next()
 const regexVariable = /(\b[ *\w]+\b) *: *(\b[ *\w]+\b) *$/;
 
 function parseWrapper(line) {
-  function parseVariable() {
-    const [, key, value] = line.content().match(regexVariable);
-    return { type: 'variable', key, value };
-  }
+  const parent = { type: 'entry', name: '__top__', content: [] };
 
   function parseEntry() {
-    if (line.token()[0] === '#') { // check entry header
-      const entry = { type: 'entry', name: line.content(), content: [] };
-      line.next();
-      while (line.token() === '-') {
-        const result = parseVariable();
-        entry.content.push(result);
-        line.next();
-      }
-      return entry;
+  }
+
+  function parseVariable() {
+    if (line.token() === '-') {
+      const [, key, value] = line.content().match(regexVariable);
+      const result = { type: 'variable', key, value };
+      return result;
     }
-    return null;
   }
 
-  function parse() {
-    const result = parseEntry();
-    return result;
+  function parseLine() {
+    while (line.i < line.max) {
+      const child = parseEntry() ?? parseVariable();
+      parent.content.push(child);
+      line.next();
+    }
+    return parent;
   }
 
-  return parse();
+  return parseLine();
 }
 
 const line = new Line(filePath);
