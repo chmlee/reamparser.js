@@ -91,12 +91,31 @@ console.log(line.token())
 console.log(line.string())
 */
 
-// const regexVariable = /^ *- *(\b[ *\w]+\b) *: *(\b[ *\w]+\b) *$/;
-const regexVariable = /(\b[ *\w]+\b) *: *(\b[ *\w]+\b) *$/;
+const regexVariable = /(\b[ *\w]+\b) *:(.*)$/;
 
 function parseMarkdata(line) {
+  function parseString(valueRaw) {
+    const content = valueRaw.trim();
+    return { type: 'string', subtype: '', content };
+  }
+
+  function parseNumber(valueRaw) {
+    if (valueRaw[0] === '$' && valueRaw[valueRaw.length - 1] === '$') {
+      /* TODO: add number syntax checking */
+      const [, content] = valueRaw.match(/\$(.*)\$/);
+      return { type: 'number', subtype: '', content };
+    }
+  }
+
+  function parseValue(valueRaw) {
+    const value = parseNumber(valueRaw)
+               ?? parseString(valueRaw);
+    return value;
+  }
+
   function parseVariable(string) {
-    const [, key, value] = string.match(regexVariable);
+    const [, key, valueRaw] = string.match(regexVariable);
+    const value = parseValue(valueRaw.trim());
     const variable = { type: 'variable', key, value };
     return variable;
   }
@@ -105,7 +124,8 @@ function parseMarkdata(line) {
     if (line.token() === '#'.repeat(line.level)) {
       const entryName = line.string();
 
-      line.next(); // check variable
+      /* check variable */
+      line.next();
       const content = [];
       while (line.i > 0 && line.token() === '-') { // variable
         const variable = parseVariable(line.string());
@@ -113,25 +133,10 @@ function parseMarkdata(line) {
         line.next();
       }
 
-      line.levelAdd(); // check subEntry
-      // console.log(line.level, (line.i + 1));
+      /* check subEntry */
+      line.levelAdd();
       while (line.i > 0 && line.token() === '#'.repeat(line.level)) {
         const subEntry = parseEntry();
-
-        /* check if entry exist */
-        /*
-        let add = false;
-        for (let i = 0; i < content.length; i += 1) {
-          if (content[i].type === 'entry' && content[i].name === subEntry.name) {
-            content[i].content.push(subEntry.content[0]);
-            add = true;
-            break;
-          }
-        }
-        if (!add) {
-          content.push(subEntry);
-        }
-        */
         content.push(subEntry);
         line.next();
       }
