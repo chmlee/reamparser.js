@@ -2,7 +2,7 @@
 const fs = require('fs');
 const util = require('util');
 
-const filePath = './example/data.md';
+const filePath = './example/data1.md';
 
 class File {
   constructor(path) {
