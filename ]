@@ -49,7 +49,7 @@ class Line extends File {
   }
 
   string(j = this.i) {
-    return this.raw(j).trim().slice(this.token().length + 1);
+    return this.raw(j).slice(this.token().length + 1).trim();
   }
 
   levelAdd() {
@@ -108,13 +108,12 @@ function parseMarkdata(line) {
   }
 
   function parseList(valueRaw) {
-    if (valueRaw === '' && line.token(line.i + 1) === '*') {
+    console.log(valueRaw)
+    if (valueRaw === '') {
       const content = [];
-      line.next();
       if (line.token() === '*') {
-        while (line.i > 0 && line.token() === '*') {
-          const item = parseValue(line.string());
-          content.push(item);
+        while (line.token() === '*') {
+          content.push(line.content());
           line.next();
         }
         return { type: 'list', subtype: '', content };
