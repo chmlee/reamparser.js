@@ -122,10 +122,24 @@ function parseMarkdata(line) {
     }
   }
 
+  function parseComment() {
+    line.next();
+    let comment;
+    if (line.i > 0 && line.token() === '>') {
+      comment = line.string();
+    } else {
+      comment = '';
+      line.back();
+    }
+    return comment;
+  }
+
   function parseValue(valueRaw) {
     const value = parseList(valueRaw)
                ?? parseNumber(valueRaw)
                ?? parseString(valueRaw);
+    const comment = parseComment();
+    value.comment = comment;
     return value;
   }
 

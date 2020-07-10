@@ -26,4 +26,6 @@
 ## test
 - list test:
   * item 1
+    > 1
   * $1$
+    > 2
