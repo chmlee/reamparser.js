@@ -61,16 +61,19 @@ class MdFile {
       }
 
       // check subEntry
-      /*
       const subEntries = [];
       while (this.lineToken() === '#'.repeat(this.level + 1)) {
         const subEntry = this.parseEntry();
         subEntries.push(subEntry);
         this.lineIndex += 1;
       }
-      */
       this.level -= 1;
-      return { type: 'entry', name: entryName, variables };
+      return {
+        type: 'entry',
+        name: entryName,
+        variables,
+        subEntries,
+      };
     }
   }
 
