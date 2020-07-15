@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+const fs = require('fs');
+const util = require('util');
+const program = require('commander');
+const { parseMarkdata } = require('./parser.js');
+
+let filePath;
+program
+  .arguments('<path>')
+  .action((path) => {
+    filePath = path;
+  })
+  .parse(process.argv);
+
+program.parse(process.argv);
+
+const fileText = fs.readFileSync(filePath, 'utf8');
+const result = parseMarkdata(fileText);
+
+console.log(util.inspect(result, false, null, true));
+console.log(result);

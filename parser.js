@@ -50,7 +50,6 @@ class MdFile {
       if (!/\w/.test(this.lineRaw())) throw Error('Entry must have name!');
       const entryName = this.lineRaw().match(/ *#+ *([\w+ ]+[^ ])/)[1];
       this.nextLine();
-      this.level += 1;
 
       // check variable
       const variables = [];
@@ -62,10 +61,11 @@ class MdFile {
 
       // check subEntry
       const subEntries = [];
+      this.level += 1;
       while (this.lineToken() === '#'.repeat(this.level + 1)) {
         const subEntry = this.parseEntry();
         subEntries.push(subEntry);
-        this.lineIndex += 1;
+        // this.nextLine();
       }
       this.level -= 1;
       return {
