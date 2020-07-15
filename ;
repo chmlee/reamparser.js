@@ -34,14 +34,8 @@ class MdFile {
     }
   }
 
-  undoNextLine() {
-    this.lineIndex -= 1;
-    while (!/\S/.test(this.lineRaw())) {
-      this.lineIndex -= 1;
-      if (this.lineIndex > this.fileMaxIndex) {
-        break;
-      }
-    }
+  string(j = this.lineIndex) {
+    return this.lineRaw(j).trim().slice(this.token().length + 1);
   }
 
   parseEntry() {
@@ -107,7 +101,6 @@ class MdFile {
         content.push(item);
         this.nextLine();
       }
-      this.undoNextLine();
       return { type: 'list', subtype: '', content };
     }
   }
@@ -131,15 +124,50 @@ class MdFile {
   parseComment() {
     // check token for the fist non-trivial line
     let j = this.lineIndex + 1;
-    while (j < this.fileMaxIndex && this.lineRaw(j).trim() === '') {
+    console.log(j)
+    while (this.lineRaw(j).trim() === '') {
       j += 1;
     }
     if (this.lineToken(j) !== '>') return '';
-    this.lineIndex = j;
-    const comment = this.lineRaw().match(/ *> *([\S+ ]+[^ ])/)[1];
+    let comment;
+    if (this.lineIndex > 0 && this.token() === '>') {
+      comment = this.string();
+    } else {
+      comment = '';
+      this.decrement();
+    }
     return comment;
   }
 
+    /*
+    if (this.token() === '#'.repeat(this.level + 1)) {
+      const entryName = this.string();
+
+      this.lineIndexncrement();
+      const content = [];
+      while (this.lineIndex > 0 && this.token() === '-') { // variable
+        const variable = this.parseVariable(this.raw());
+        content.push(variable);
+        this.lineIndexncrement();
+      }
+
+      this.levelIncrement();
+      while (this.lineIndex > 0 && this.token() === '#'.repeat(this.level)) {
+        const subEntry = this.parseEntry();
+        content.push(subEntry);
+        this.lineIndexncrement();
+      }
+      this.back();
+      this.levelDecrement();
+
+      const entry = { type: 'entry', name: entryName, content };
+      return entry;
+    }
+  }
+
+
+
+  */
 }
 
 function parseMarkdata(fileText) {
