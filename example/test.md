@@ -13,8 +13,5 @@
 ## Level 2
 - key: value
 
-#### wrong
-- k: v
-
 ### Level 3
 - key: val

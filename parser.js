@@ -75,6 +75,7 @@ class MdFile {
         subEntries,
       };
     }
+    return null;
   }
 
   parseVariable(string) {
@@ -113,6 +114,7 @@ class MdFile {
       this.undoNextLine();
       return { type: 'list', subtype: '', content };
     }
+    return null;
   }
 
   parseNumber(valueRaw) {
@@ -123,6 +125,7 @@ class MdFile {
       const [, content] = valueRaw.match(/\$(.*)\$/);
       return { type: 'number', subtype: '', content };
     }
+    return null;
   }
 
   parseString(valueRaw) {
@@ -142,7 +145,6 @@ class MdFile {
     const comment = this.lineRaw().match(/ *> *([\S+ ]+[^ ])/)[1];
     return comment;
   }
-
 }
 
 function parseMarkdata(fileText) {
