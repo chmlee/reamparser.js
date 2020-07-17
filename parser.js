@@ -1,5 +1,5 @@
 const re = require('./grammar.js');
-const { mutateString, mutateNumber } = require('./mutation.js');
+const { mutateString, mutateNumber, mutateBoolean } = require('./mutation.js');
 const { toCSV } = require('./action.js');
 
 // Line Class
@@ -10,10 +10,6 @@ class MdFile {
     this.level = 0;
     this.lineIndex = 1;
     this.fileMaxIndex = this.fileArray.length - 1;
-  }
-
-  placeholder() {
-    this.lineIndex += 0;
   }
 
   lineRaw(j = this.lineIndex) {
@@ -84,12 +80,12 @@ class MdFile {
     const [, key, valueRaw] = string.match(re.VARIABLE);
     const value = this.parseValue(valueRaw.trim());
     const variable = { type: 'variable', key, value };
-    this.placeholder();
     return variable;
   }
 
   parseValue(valueRaw) {
     const value = this.parseList(valueRaw)
+               ?? mutateBoolean(valueRaw)
                ?? mutateNumber(valueRaw)
                ?? mutateString(valueRaw);
     const comment = this.parseComment();
@@ -118,13 +114,6 @@ class MdFile {
     }
     return null;
   }
-
-
-  // parseString(valueRaw) {
-  //   this.placeholder();
-  //   const content = valueRaw.trim();
-  //   return { type: 'string', subtype: '', content };
-  // }
 
   parseComment() {
     // check token for the fist non-trivial line
