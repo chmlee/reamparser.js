@@ -1,5 +1,6 @@
 const re = require('./grammar.js');
-const { toCSV } = require('./toCSV.js');
+const { mutateString, mutateNumber } = require('./mutation.js');
+const { toCSV } = require('./action.js');
 
 // Line Class
 class MdFile {
@@ -89,8 +90,8 @@ class MdFile {
 
   parseValue(valueRaw) {
     const value = this.parseList(valueRaw)
-               ?? this.parseNumber(valueRaw)
-               ?? this.parseString(valueRaw);
+               ?? mutateNumber(valueRaw)
+               ?? mutateString(valueRaw);
     const comment = this.parseComment();
     value.comment = comment;
     return value;
@@ -118,22 +119,12 @@ class MdFile {
     return null;
   }
 
-  parseNumber(valueRaw) {
-    this.placeholder();
-    if (valueRaw[0] === '$' && valueRaw[valueRaw.length - 1] === '$') {
-      // TODO: add number syntax checking
-      // return string type if false
-      const [, content] = valueRaw.match(/\$(.*)\$/);
-      return { type: 'number', subtype: '', content };
-    }
-    return null;
-  }
 
-  parseString(valueRaw) {
-    this.placeholder();
-    const content = valueRaw.trim();
-    return { type: 'string', subtype: '', content };
-  }
+  // parseString(valueRaw) {
+  //   this.placeholder();
+  //   const content = valueRaw.trim();
+  //   return { type: 'string', subtype: '', content };
+  // }
 
   parseComment() {
     // check token for the fist non-trivial line
