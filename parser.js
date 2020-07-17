@@ -1,4 +1,5 @@
 const re = require('./grammar.js');
+const { toCSV } = require('./toCSV.js');
 
 // Line Class
 class MdFile {
@@ -145,12 +146,22 @@ class MdFile {
     const comment = this.lineRaw().match(/ *> *([\S+ ]+[^ ])/)[1];
     return comment;
   }
+
+  setDefault() {
+    this.level = 0;
+    this.lineIndex = 1;
+  }
+
+  toTree() {
+    const tree = this.parseEntry();
+    this.setDefault();
+    return tree;
+  }
+
+  toCSV() {
+    const tree = this.toTree();
+    return toCSV(tree);
+  }
 }
 
-function parseMarkdata(fileText) {
-  const md = new MdFile(fileText);
-  return md.parseEntry();
-}
-
-exports.parseMarkdata = parseMarkdata;
 exports.MdFile = MdFile;

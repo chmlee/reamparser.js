@@ -1,11 +1,12 @@
 const fs = require('fs');
 const util = require('util');
 
-const { parseMarkdata } = require('./parser.js');
+const { MdFile } = require('./parser.js');
+const { toCSV } = require('./toCSV.js');
 
-const filePath = './example/test.md';
+const filePath = './example/eu.md';
 const fileText = fs.readFileSync(filePath, 'utf8');
 
-const result = parseMarkdata(fileText);
-console.log(util.inspect(result, false, null, true));
-console.log(result);
+const mdFile = new MdFile(fileText);
+const tree = mdFile.toTree();
+console.log(mdFile.toCSV());

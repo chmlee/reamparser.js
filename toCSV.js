@@ -25,8 +25,13 @@ function flattenEntry(entry) {
   return result;
 }
 
-function toCSV(flatEntry, sep = ',') {
+function toCSV(tree, sep = ',') {
+  const flatEntry = flattenEntry(tree);
   const flatEntryString = flatEntry.map((row) => row.join(sep));
   const csvRaw = flatEntryString.join('\r\n');
   return csvRaw;
 }
+
+module.exports = {
+  toCSV,
+};
