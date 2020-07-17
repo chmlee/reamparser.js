@@ -1,8 +1,9 @@
-import fs from 'fs';
-import util from 'util';
-import { MdFile } from './src/markdata.js';
+const fs = require('fs');
+const util = require('util');
 
-const filePath = './example/eu.md';
+const { MdFile } = require('./all.js');
+
+const filePath = '../example/eu.md';
 const fileText = fs.readFileSync(filePath, 'utf8');
 
 const mdFile = new MdFile(fileText);

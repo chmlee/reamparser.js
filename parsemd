@@ -2,7 +2,7 @@
 const fs = require('fs');
 const util = require('util');
 const program = require('commander');
-const { parseMarkdata } = require('./parser.js');
+const { parseMarkdata } = require('./src/markdata.js');
 
 let filePath;
 program
