@@ -1,6 +1,6 @@
-import { mutateString } from './mutateString.js';
-import { mutateNumber } from './mutateNumber.js';
-import { mutateBoolean } from './mutateBoolean.js';
+const { mutateString } = require('./mutateString.js');
+const { mutateNumber } = require('./mutateNumber.js');
+const { mutateBoolean } = require('./mutateBoolean.js');
 
 module.exports = {
   mutateString,

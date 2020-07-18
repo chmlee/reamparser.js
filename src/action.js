@@ -1,4 +1,4 @@
-import { toCSV } from './toCSV.js';
+const { toCSV } = require('./toCSV.js');
 
 module.exports = {
   toCSV,

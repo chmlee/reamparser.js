@@ -1,13 +1,6 @@
 {
   "name": "markdata.js",
   "version": "0.2.0",
-<<<<<<< HEAD
-  "description": "",
-  "main": "./src/markdata.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
-=======
   "description": "Parser and Emitter for Markdata",
   "main": "./dist/markdata.min.js",
   "file": [
@@ -30,7 +23,6 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/chmlee/markdata.js/issues"
->>>>>>> experiment
   },
   "homepage": "https://github.com/chmlee/markdata.js#readme",
   "devDependencies": {
@@ -43,18 +35,5 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
   },
-<<<<<<< HEAD
-  "dependencies": {
-    "commander": "^5.1.0",
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "requirejs": "^2.3.6",
-    "rollup": "^2.21.0",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
-  },
-  "type": "module"
-=======
   "dependencies": {}
->>>>>>> experiment
 }

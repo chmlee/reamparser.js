@@ -1,5 +1,3 @@
-const VARIABLE = /- +(\b[ *\w]+\b) *:(.*)$/;
-
-module.exports = {
-  VARIABLE,
-};
+module.exports = Object.freeze({
+  VARIABLE: /- +(\b[ *\w]+\b) *:(.*)$/,
+});
