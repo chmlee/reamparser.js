@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-import re from './grammar.js';
-import { mutateString, mutateNumber, mutateBoolean } from './mutation.js';
-import { toCSV } from './action.js';
-=======
 const re = require('./grammar.js');
 const { mutateString, mutateNumber, mutateBoolean } = require('./mutation.js');
 const { toCSV } = require('./action.js');
->>>>>>> experiment
 
 // Line Class
 class MdFile {
