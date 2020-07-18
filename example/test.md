@@ -1,11 +1,13 @@
 # Level 1
 - key 1: 1-1-a
 - key 2: 1-1-b
-
 ## Level 2
 - key a: 2-1-a
 - key b: 2-1-b
-
+- list:
+  * item 1
+  * item 2
+a
 ### Level 3
 - a: 3-1-a
 - b: 3-1-b

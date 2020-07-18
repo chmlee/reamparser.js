@@ -10,7 +10,9 @@ function merge(parent, children) {
 
 function flattenEntry(entry) {
   // collect parent item
-  const parent = entry.variables.map((variable) => variable.value.content);
+  const parent = entry.variables
+    .filter((variable) => variable.value.type !== 'list') // ignore list for now
+    .map((variable) => variable.value.content);
 
   // collect children item
   const children = [];
