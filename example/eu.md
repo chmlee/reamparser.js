@@ -96,6 +96,7 @@
 
 ## Country
 - name: Croatia
+- coastal: `TRUE`
 
 ### Year
 - name: 2015
