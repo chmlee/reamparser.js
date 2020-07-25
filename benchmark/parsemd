@@ -2,7 +2,7 @@
 const fs = require('fs');
 // const util = require('util');
 const program = require('commander');
-const { MdFile } = require('./markdata.min.js');
+const { MdFile } = require('../markdata.min.js');
 
 let filePath;
 program
@@ -16,4 +16,4 @@ program.parse(process.argv);
 
 const fileText = fs.readFileSync(filePath, 'utf8');
 const mdFile = new MdFile(fileText);
-console.log(mdFile.toCSV());
+console.log(mdFile.toTree());

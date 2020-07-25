@@ -1,4 +1,6 @@
 # data
+benchmark/input
+benchmark/output
 
 # Logs
 logs
