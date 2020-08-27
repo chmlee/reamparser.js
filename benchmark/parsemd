@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node 
 const fs = require('fs');
 // const util = require('util');
 const program = require('commander');
@@ -16,4 +16,4 @@ program.parse(process.argv);
 
 const fileText = fs.readFileSync(filePath, 'utf8');
 const mdFile = new MdFile(fileText);
-console.log(mdFile.toTree());
+console.log(mdFile.toCSV());

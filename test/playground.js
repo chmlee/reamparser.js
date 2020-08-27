@@ -4,7 +4,7 @@ const util = require('util');
 const libPath = `${__dirname}/../src/markdata.js`;
 const { MdFile } = require(libPath);
 
-const filePath = '../example/test.md';
+const filePath = '../benchmark/input/b1.md';
 const fileText = fs.readFileSync(filePath, 'utf8');
 
 const mdFile = new MdFile(fileText);
