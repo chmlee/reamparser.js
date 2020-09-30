@@ -1,8 +1,8 @@
 {
-  "name": "markdata.js",
-  "version": "0.2.1",
-  "description": "Parser and Emitter for Markdata",
-  "main": "./src/markdata.js",
+  "name": "reamparser.js",
+  "version": "0.2.2",
+  "description": "Parser and Emitter for REAM",
+  "main": "./src/ream.js",
   "directories": {
     "example": "example"
   },
@@ -17,24 +17,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chmlee/markdata.js.git"
+    "url": "git+https://github.com/chmlee/reamparser.js.git"
   },
   "author": "Chih-Ming Louis Lee",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chmlee/markdata.js/issues"
+    "url": "https://github.com/chmlee/reamparser.js/issues"
   },
-  "homepage": "https://github.com/chmlee/markdata.js#readme",
+  "homepage": "https://github.com/chmlee/reamparser.js#readme",
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "babel-loader": "^8.1.0",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0"
+    "eslint-plugin-import": "^2.22.0",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "comander": "^0.0.1-security",
-    "commander": "^6.0.0"
+    "commander": "^6.0.0",
+    "webpack": "^4.44.2"
   }
 }

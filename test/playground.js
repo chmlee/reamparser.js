@@ -1,7 +1,7 @@
 const fs = require('fs');
 const util = require('util');
 
-const libPath = `${__dirname}/../src/markdata.js`;
+const libPath = `${__dirname}/../src/ream.js`;
 const { MdFile } = require(libPath);
 
 const filePath = '../benchmark/input/b1.md';
