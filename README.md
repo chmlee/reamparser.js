@@ -53,6 +53,6 @@ $ path/to/parsemd path/to/input.md > path/to/output.csv
 ## Benchmark
 
 The parser is (surprisingly) fast.
-It compiles a 10000 rows * 360 columns dataset in about 7 seconds, and can be as fast as 3 seconds if utilizes the REAM's inheritance feature.
+It compiles a 10000 rows * 360 columns dataset in about 7 seconds, and can be as fast as 3 seconds if utilizes REAM's inheritance feature.
 
 To test it, first generate the four benchmark REAM files with [`generator.py`](https://github.com/chmlee/reamparser.js/blob/master/benchmark/generator.py), than run the benchmark with the script [`benchmark.sh`](https://github.com/chmlee/reamparser.js/blob/master/benchmark/benchmark.sh).
