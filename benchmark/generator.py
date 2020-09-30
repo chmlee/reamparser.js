@@ -7,6 +7,13 @@ number = '$3.14159$'
 boolean = '`FALSE`'
 
 
+if not os.path.exists('./input'):
+    os.makedirs('./input')
+if not os.path.exists('./output'):
+    os.makedirs('./output')
+
+
+
 def generateFile(path, entryList, varList):
     # init
     if os.path.exists(path):
