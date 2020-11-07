@@ -4,9 +4,9 @@ module.exports = {
   mode: 'production',
   entry: './src/ream.js',
   output: {
-    filename: 'ream.min.js',
+    filename: './dist/ream.min.js',
     path: path.resolve(__dirname),
-    library: 'rea',
+    library: 'ream',
     libraryTarget: 'umd',
     globalObject: 'this', // https://medium.com/@JakeXiao/window-is-undefined-in-umd-library-output-for-webpack4-858af1b881df
     umdNamedDefine: true,
