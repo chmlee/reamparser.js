@@ -6,8 +6,8 @@ NOTE: [REAM-editor](https://github.com/chmlee/ream-editor) ships with reamparser
 
 ## Reqruiements
 
-- node.js
-- commander.js if using the CLI tool `parsemd`
+- `node.js`
+- `commander.js` if using the CLI tool `parsemd`
 
 ## Installation
 
@@ -57,7 +57,7 @@ It compiles a 10000 rows * 360 columns dataset in about 7 seconds, and can be as
 
 To test it, first generate the eight benchmark REAM files with [`generator.py`](https://github.com/chmlee/reamparser.js/blob/master/benchmark/generator.py).
 They are identical in content, but with different schemas.
-You can use any benchmark tools you desire, but if you are using [hyperfine](https://github.com/sharkdp/hyperfine), you can run the script [`benchmark.sh`](https://github.com/chmlee/reamparser.js/blob/master/benchmark/benchmark.sh) I used.
+You can use any benchmark tools you desire. If you are using [hyperfine](https://github.com/sharkdp/hyperfine), the script I use is available: [`benchmark_hf.sh`](https://github.com/chmlee/reamparser.js/blob/master/benchmark/benchmark_hf.sh).
 
 The results are as follow:
 
