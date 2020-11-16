@@ -1,4 +1,4 @@
-"generating benchmark files"
+"generate benchmark files"
 
 import os
 
@@ -15,6 +15,7 @@ if not os.path.exists('./output'):
 
 
 def generateFile(path, entryList, varList):
+    print(f"generating {path}")
     # init
     if os.path.exists(path):
         os.remove(path)
@@ -42,6 +43,10 @@ def generateFile(path, entryList, varList):
 
 
 generateFile("./input/b1.md", [10000], [[120, 120, 120] for _ in range(1)])
-generateFile("./input/b2.md", [1000, 10], [[60, 60, 60] for _ in range(2)])
-generateFile("./input/b3.md", [100, 10, 10], [[40, 40, 40] for _ in range(3)])
+generateFile("./input/b2-1.md", [1000, 10], [[60, 60, 60] for _ in range(2)])
+generateFile("./input/b2-2.md", [100, 100], [[60, 60, 60] for _ in range(2)])
+generateFile("./input/b2-3.md", [10, 1000], [[60, 60, 60] for _ in range(2)])
+generateFile("./input/b3-1.md", [100, 10, 10], [[40, 40, 40] for _ in range(3)])
+generateFile("./input/b3-2.md", [10, 100, 10], [[40, 40, 40] for _ in range(3)])
+generateFile("./input/b3-3.md", [10, 10, 100], [[40, 40, 40] for _ in range(3)])
 generateFile("./input/b4.md", [10, 10, 10, 10], [[30, 30, 30] for _ in range(4)])

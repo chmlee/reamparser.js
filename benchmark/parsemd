@@ -1,9 +1,9 @@
-#!/usr/bin/env node 
+#!/usr/bin/env node
 const fs = require('fs');
 // const util = require('util');
 const program = require('commander');
-const { MdFile } = require('../ream.min.js');
-//const { MdFile } = require('../src/ream.js');
+const { MdFile } = require('../dist/ream.min.js');
+// const { MdFile } = require('../src/ream.js');
 
 let filePath;
 program
