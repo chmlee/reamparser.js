@@ -35,7 +35,6 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "comander": "^0.0.1-security",
     "commander": "^6.2.0",
     "webpack": "^4.44.2"
   }
