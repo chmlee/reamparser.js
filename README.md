@@ -62,6 +62,8 @@ If you are using [hyperfine](https://github.com/sharkdp/hyperfine), the script I
 
 The results are as follow:
 
-![benchmark](./benchmark.jpg)
+![benchmark](./benchmark/p1.jpg)
+![benchmark](./benchmark/p2.jpg)
+![benchmark](./benchmark/p3.jpg)
 
 (Intel i7-6700HQ, 8GB Memory, WSL2/Arch Linux with nodejs v15.2.0)
