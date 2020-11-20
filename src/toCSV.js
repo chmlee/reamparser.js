@@ -9,10 +9,20 @@ function merge(parent, children) {
 }
 
 function flattenEntry(entry) {
+  function unwrap_content(variable) {
+    if (variable.value.type === 'list') {
+      const items = variable.value.content
+        .map((item) => item.content)
+        .join(';')
+      return items
+    }
+    return variable.value.content;
+  }
   // collect parent item
   const parent = entry.variables
-    .filter((variable) => variable.value.type !== 'list') // ignore list for now
-    .map((variable) => variable.value.content);
+    .map((variable) => unwrap_content(variable));
+
+  // new collect parent item
 
   // collect children item
   const children = [];
