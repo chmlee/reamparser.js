@@ -9,18 +9,18 @@ function merge(parent, children) {
 }
 
 function flattenEntry(entry) {
-  function unwrap_content(variable) {
+  function unwrapContent(variable) {
     if (variable.value.type === 'list') {
       const items = variable.value.content
         .map((item) => item.content)
-        .join(';')
-      return items
+        .join(';');
+      return items;
     }
     return variable.value.content;
   }
   // collect parent item
   const parent = entry.variables
-    .map((variable) => unwrap_content(variable));
+    .map((variable) => unwrapContent(variable));
 
   // new collect parent item
 
